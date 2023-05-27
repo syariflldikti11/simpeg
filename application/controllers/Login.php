@@ -8,7 +8,7 @@ class Login extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Login_model');
+        $this->load->model('M_login');
     }
     public function index()
     {
@@ -29,10 +29,7 @@ class Login extends CI_Controller
             redirect(site_url('pegawai'));
         } else {
             $data = array(
-                'dt_aplikasi' => $this->Login_model->get_aplikasi(),
-                'judul' => 'Login Pinandu LLDIKTI XI',
-                'menu' => 'login',
-                'sub_menu' => '',
+           
                 'action' => 'login/auth_action',
             );
             $this->load->view('login/login', $data);
@@ -44,7 +41,7 @@ class Login extends CI_Controller
         $nip = htmlspecialchars($this->input->post('nip', TRUE), ENT_QUOTES);
         $password = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
         $aplikasi = htmlspecialchars($this->input->post('aplikasi', TRUE), ENT_QUOTES);
-        $cek_login = $this->Login_model->auth($nip, $aplikasi);
+        $cek_login = $this->m_login->auth($nip, $aplikasi);
         if ($cek_login) {
 
             if (password_verify($password, $cek_login->password)) {

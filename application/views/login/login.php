@@ -1,138 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sistem Informasi Kepegawaian</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/dist/css/AdminLTE.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/plugins/iCheck/square/blue.css">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
-    <title><?= $judul; ?></title>
-
-    <!-- Custom fonts for this template-->
-    <link href="<?= base_url(); ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url(); ?>/assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>/assets/css/custom.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<body class="hold-transition login-page">
+<div class="login-box">
 
-<body class="bg-gradient-warning">
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+  <center>   <img width="50%" src="<?= base_url(); ?>/assets/logopemko.png">
+              <h3 class="box-title mb-3">Login SIMPEG</h3>  
+              Sistem Informasi Kepegawaian SDN Kebun Bunga 6 Banjarmasin
+              </center>
 
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4"><?= $judul; ?></h1>
-                                    </div>
-
-                                    <?php
-                                    echo form_open($action, 'class="user"'); ?>
-                                 <div class="input-group mb-3">
-                                        <input type="text" name="nip" class="form-control " id="exampleInputEmail" aria-describedby="emailHelp" placeholder="NIP">
-                                        <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="fas fa-users"></i>
-            </div>
+   <?php
+                     echo form_open($action); ?>
+      <div class="form-group has-feedback">
+        <input type="text" name="username" class="form-control"placeholder="Username"  required >
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" class="form-control"  placeholder="Password" required>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> Remember Me
+            </label>
           </div>
-                                    </div>
-                                    <div class="input-group mb-3" id="show_hide_password">
-
-                                        <input type="password" class="form-control " id="exampleInputPassword" name="password" placeholder="Password">
-                                        <div class="input-group-append">
-            <div class="input-group-text">
-            <a href=""><i class="fa fa-eye-slash" aria-hidden="true" margin="left"></i></a>
-            </div>
-</div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                    <select class="form-control"  name="aplikasi">
-   
- <?php foreach ($dt_aplikasi as $r) :?>
-   <option value="<?= $r->nama_aplikasi; ?>"><?= $r->nama_aplikasi; ?></option>
-   <?php endforeach;?>
-   </select>
-                                    </div>
-                                    <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Login">
-
-
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+     
+          <input type="submit" class="btn btn-primary btn-block btn-flat" value="Login">
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
 
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url(); ?>/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<?= base_url(); ?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="<?= base_url(); ?>/assets/js/sb-admin-2.min.js"></script>
-    <script type="text/javascript">
-        <?php if ($this->session->flashdata('success')) { ?>
-            toastr.success("<?php echo $this->session->flashdata('success'); ?>");
-        <?php } else if ($this->session->flashdata('gagal')) {  ?>
-            toastr.error("<?php echo $this->session->flashdata('gagal'); ?>");
-        <?php } else if ($this->session->flashdata('update')) {  ?>
-            toastr.info("<?php echo $this->session->flashdata('update'); ?>");
-        <?php } ?>
-    </script>
-    <script src="js/main.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#show_hide_password a").on('click', function(event) {
-                event.preventDefault();
-                if ($('#show_hide_password input').attr("type") == "text") {
-                    $('#show_hide_password input').attr('type', 'password');
-                    $('#show_hide_password i').addClass("fa-eye-slash");
-                    $('#show_hide_password i').removeClass("fa-eye");
-                } else if ($('#show_hide_password input').attr("type") == "password") {
-                    $('#show_hide_password input').attr('type', 'text');
-                    $('#show_hide_password i').removeClass("fa-eye-slash");
-                    $('#show_hide_password i').addClass("fa-eye");
-                }
-            });
-        });
-    </script>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 3 -->
+<script src="<?= base_url(); ?>/assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?= base_url(); ?>/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="<?= base_url(); ?>/assets/plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+</script>
 </body>
-
 </html>

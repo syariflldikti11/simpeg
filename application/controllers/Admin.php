@@ -9,19 +9,110 @@ class Admin extends CI_Controller
         $this->load->database();
         $this->load->model('m_umum');
         $this->load->model('m_admin');
-        $id_aplikasi = $this->session->userdata('id_aplikasi');
-        if ($id_aplikasi <> 1) {
-            redirect(site_url('login'));
-        }
+
     }
 
 
     function index()
     {
         $data = array(
-            'judul' => 'Dashboard',
+            'menu' => 'Dashboard',
+            'sub_menu' => '',
         );
         $this->template->load('admin/template', 'admin/home', $data);
+    }
+    function jabatan()
+    {
+        $data = array(
+            'judul' => 'Data Jabatan',
+            'menu' => 'Data Master',
+            'sub_menu' => 'jabatan',
+            'dt_jabatan' => $this->m_umum->get_data('jabatan'),
+        );
+        $this->template->load('admin/template', 'admin/jabatan', $data);
+    }
+    function simpan_jabatan()
+    {
+
+        $this->db->set('id_jabatan', 'UUID()', FALSE);
+        $this->form_validation->set_rules('nama_jabatan', 'nama_jabatan', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/jabatan');
+        else {
+
+            $this->m_umum->set_data("jabatan");
+            $notif = "Tambah Jabatan Berhasil";
+            $this->session->set_flashdata('success', $notif);
+            redirect('admin/jabatan');
+        }
+    }
+    function update_jabatan()
+    {
+
+        $this->form_validation->set_rules('id_jabatan', 'id_jabatan', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/jabatan');
+        else {
+            $this->m_umum->update_data("jabatan");
+            $notif = " Update Jabatan Berhasil";
+            $this->session->set_flashdata('update', $notif);
+            redirect('admin/jabatan');
+        }
+    }
+    function delete_jabatan($id)
+    {
+
+        $this->m_umum->hapus('jabatan', 'id_jabatan', $id);
+        $notif = "Jabatan Berhasil dihapuskan";
+        $this->session->set_flashdata('delete', $notif);
+        redirect('admin/jabatan');
+    }
+
+    function jenis_arsip()
+    {
+        $data = array(
+            'judul' => 'Data Jenis Arsip',
+            'menu' => 'Data Master',
+            'sub_menu' => 'jenis_arsip',
+            'dt_jenis_arsip' => $this->m_umum->get_data('jenis_arsip'),
+        );
+        $this->template->load('admin/template', 'admin/jenis_arsip', $data);
+    }
+    function simpan_jenis_arsip()
+    {
+
+        $this->db->set('id_jenis_arsip', 'UUID()', FALSE);
+        $this->form_validation->set_rules('nama_jenis_arsip', 'nama_jenis_arsip', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/jenis_arsip');
+        else {
+
+            $this->m_umum->set_data("jenis_arsip");
+            $notif = "Tambah Jenis Arsip Berhasil";
+            $this->session->set_flashdata('success', $notif);
+            redirect('admin/jenis_arsip');
+        }
+    }
+    function update_jenis_arsip()
+    {
+
+        $this->form_validation->set_rules('id_jenis_arsip', 'id_jenis_arsip', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/jenis_arsip');
+        else {
+            $this->m_umum->update_data("jenis_arsip");
+            $notif = " Update Jenis Arsip Berhasil";
+            $this->session->set_flashdata('update', $notif);
+            redirect('admin/jenis_arsip');
+        }
+    }
+    function delete_jenis_arsip($id)
+    {
+
+        $this->m_umum->hapus('jenis_arsip', 'id_jenis_arsip', $id);
+        $notif = "Jenis Arsip Berhasil dihapuskan";
+        $this->session->set_flashdata('delete', $notif);
+        redirect('admin/jenis_arsip');
     }
     function pts()
     {
@@ -410,7 +501,7 @@ class Admin extends CI_Controller
     function simpan_aplikasi()
     {
 
-       
+
         $this->form_validation->set_rules('nama_aplikasi', 'nama_aplikasi', 'required');
         if ($this->form_validation->run() === FALSE)
             redirect('admin/aplikasi');
@@ -444,7 +535,7 @@ class Admin extends CI_Controller
     function simpan_role()
     {
 
-     
+
         $this->form_validation->set_rules('nama_role', 'nama_role', 'required');
         if ($this->form_validation->run() === FALSE)
             redirect('admin/role');
@@ -466,5 +557,5 @@ class Admin extends CI_Controller
         redirect('admin/role');
     }
 
-  
+
 }
