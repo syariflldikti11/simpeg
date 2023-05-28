@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Sistem Informasi Kepegawaian</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -338,14 +338,14 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li <?php if ($sub_menu == 'jabatan') echo "class=active"; ?>><a href="<?= base_url('admin/jabatan'); ?>">Jabatan</a></li>
-              <li <?php if ($sub_menu == 'jenis_arsip') echo "class=active"; ?>><a href="<?= base_url('admin/jenis_arsip'); ?>">Jenis Arsip</a></li>
+              <li <?php if ($sub_menu == 'Jabatan') echo "class=active"; ?>><a href="<?= base_url('admin/jabatan'); ?>">Jabatan</a></li>
+              <li <?php if ($sub_menu == 'Jenis Arsip') echo "class=active"; ?>><a href="<?= base_url('admin/jenis_arsip'); ?>">Jenis Arsip</a></li>
 
 
             </ul>
           </li>
-          <li><a href="<?= base_url('admin/kampung_kb'); ?>"><i class="fa fa-users"></i> <span>Pegawai</span></a></li>
-          <li><a href="<?= base_url('admin/arsip_kepegawaian'); ?>"><i class="fa fa-file"></i> <span>Arsip
+          <li <?php if ($menu == 'Pegawai') echo "class=active"; ?>><a href="<?= base_url('admin/pegawai'); ?>"><i class="fa fa-users"></i> <span>Pegawai</span></a></li>
+          <li <?php if ($menu == 'arsip_kepegawaian') echo "class=active"; ?>><a href="<?= base_url('admin/arsip_kepegawaian'); ?>"><i class="fa fa-file"></i> <span>Arsip
                 Kepegawaian</span></a></li>
 
           <li class="treeview">
