@@ -98,7 +98,7 @@ class Admin extends CI_Controller
             'menu' => 'Pegawai',
             'sub_menu' => '',
             'dt_pegawai' => $this->m_admin->get_pegawai('pegawai'),
-            'dt_jenis_arsip' => $this->m_umum->get_data('jenis_arsip'),
+            'dt_jabatan' => $this->m_umum->get_data('jabatan'),
         );
         $this->template->load('admin/template', 'admin/pegawai', $data);
     }
@@ -106,12 +106,34 @@ class Admin extends CI_Controller
     function simpan_pegawai()
     {
         $this->db->set('id_pegawai', 'UUID()', FALSE);
-        $id_jenis_arsip = $this->input->post('id_jenis_arsip');
-        $keterangan = $this->input->post('keterangan');
+        $nip = $this->input->post('nip');
+        $nik = $this->input->post('nik');
+        $kk = $this->input->post('kk');
+        $tempat_lahir = $this->input->post('tempat_lahir');
+        $tgl_lahir = $this->input->post('tgl_lahir');
+        $agama = $this->input->post('agama');
+        $alamat = $this->input->post('alamat');
+        $email = $this->input->post('email');
+        $no_hp = $this->input->post('no_hp');
+        $status_kawin = $this->input->post('status_kawin');
+        $id_jabatan = $this->input->post('id_jabatan');
+        $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');
+        $tmt = $this->input->post('tmt');
         $file = $this->uploadFile();
         $data = array(
-            'id_jenis_arsip' => $id_jenis_arsip,
-            'keterangan' => $keterangan,
+            'nip' => $nip,
+            'nik' => $nik,
+            'kk' => $kk,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir' => $tgl_lahir,
+            'agama' => $agama,
+            'email' => $email,
+            'alamat' => $alamat,
+            'no_hp' => $no_hp,
+            'status_kawin' => $status_kawin,
+            'id_jabatan' => $id_jabatan,
+            'pendidikan_terakhir' => $pendidikan_terakhir,
+            'tmt' => $tmt,
             'file' => $file
         );
 
@@ -122,9 +144,20 @@ class Admin extends CI_Controller
 
     }
     function update_pegawai(){
-        $id_pegawai = $this->input->post('id_pegawai');
-        $id_jenis_arsip = $this->input->post('id_jenis_arsip');
-        $keterangan = $this->input->post('keterangan');
+       $id_pegawai = $this->input->post('id_pegawai');
+       $nip = $this->input->post('nip');
+        $nik = $this->input->post('nik');
+        $kk = $this->input->post('kk');
+        $tempat_lahir = $this->input->post('tempat_lahir');
+        $tgl_lahir = $this->input->post('tgl_lahir');
+        $agama = $this->input->post('agama');
+        $alamat = $this->input->post('alamat');
+        $email = $this->input->post('email');
+        $no_hp = $this->input->post('no_hp');
+        $status_kawin = $this->input->post('status_kawin');
+        $id_jabatan = $this->input->post('id_jabatan');
+        $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');
+        $tmt = $this->input->post('tmt');
         $old = $this->input->post('old_file');
             
             if (!empty($_FILES["file"]["name"])) {
@@ -135,9 +168,20 @@ class Admin extends CI_Controller
                 }
             $data_update = array(
                 'id_pegawai' => $id_pegawai,
-                'id_jenis_arsip' => $id_jenis_arsip,
-                'keterangan' => $keterangan,
-                'file' => $file
+                'nip' => $nip,
+            'nik' => $nik,
+            'kk' => $kk,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir' => $tgl_lahir,
+            'agama' => $agama,
+            'email' => $email,
+            'alamat' => $alamat,
+            'no_hp' => $no_hp,
+            'status_kawin' => $status_kawin,
+            'id_jabatan' => $id_jabatan,
+            'pendidikan_terakhir' => $pendidikan_terakhir,
+            'tmt' => $tmt,
+            'file' => $file
                 );
                 $where = array('id_pegawai' => $id_pegawai);
                 $res = $this->m_umum->UpdateData('pegawai', $data_update, $where);
@@ -160,7 +204,15 @@ class Admin extends CI_Controller
         redirect('admin/pegawai');
 
     }
-
+   function profil($id)
+    {
+        $data = array(
+            'judul' => 'Profil Pegawai',
+            'menu' => 'Pegawai',
+            'sub_menu' => 'Profil Pegawai',
+        );
+        $this->template->load('admin/template', 'admin/profil', $data);
+    }
     function jabatan()
     {
         $data = array(
