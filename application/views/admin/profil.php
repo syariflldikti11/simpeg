@@ -20,25 +20,15 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+              <img class="img-responsive pic-borderedle" width="100%" src="<?= base_url();?>/upload/<?= $d->file; ?>" alt="User profile picture">
 
-              <h3 class="profile-username text-center">Nina Mcintire</h3>
+              <h3 class="profile-username text-center"><?= $d->nama_pegawai; ?></h3>
+              <p class="text-muted text-center"><b><?= $d->nama_jabatan; ?></b></p>
+              <p class="text-muted text-center"><b>TMT <?= $d->tmt; ?></b></p>
 
-              <p class="text-muted text-center">Software Engineer</p>
+             
 
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">1,322</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">13,287</a>
-                </li>
-              </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              <a href="#" class="btn btn-warning btn-block"><b>Ajukan Perubahan Data</b></a>
             </div>
             <!-- /.box-body -->
           </div>
@@ -50,219 +40,133 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+              <li class="active"><a href="#pribadi" data-toggle="tab">Data Pribadi</a></li>
+              <li><a href="#keluarga" data-toggle="tab">Keluarga</a></li>
               <li><a href="#settings" data-toggle="tab">Settings</a></li>
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post clearfix">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Sent you a message - 3 days ago</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
+              <div class="active tab-pane" id="pribadi">
+            <div class="row">
+              <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Nama</label> <br />
+                        <?= $d->nama_pegawai; ?>
+                        
                       </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+               <div class="form-group">
+                        <label for="exampleInputEmail1">NIP</label> <br />
+                        <?= $d->nip; ?>
+                        
                       </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Posted 5 photos - 5 days ago</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
+             <div class="form-group">
+                        <label for="exampleInputEmail1">NIK</label> <br />
+                        <?= $d->nik; ?>
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">KK</label> <br />
+                        <?= $d->kk; ?>
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Tempat Lahir</label> <br />
+                        <?= $d->tempat_lahir; ?>
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal Lahir</label> <br />
+                        <?= $d->tgl_lahir; ?>
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Agama</label> <br />
+                        <?= $d->agama; ?> required  >
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Alamat</label> <br />
+                        <?= $d->alamat; ?>
+                        
+                      </div>
+            </div>
+            <div class="col-md-6">
+             
+             <div class="form-group">
+                          <label for="exampleInputEmail1">Email</label> <br />
+                          <?= $d->email; ?>
+                          
                         </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+               <div class="form-group">
+                          <label for="exampleInputEmail1">No HP</label> <br />
+                          <?= $d->no_hp; ?>
+                          
                         </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div>
-                <!-- /.post -->
+                          <div class="form-group">
+                          <label for="exampleInputEmail1">Satus Kawin</label> <br />
+                          <?= $d->status_kawin; ?>
+                          
+                        </div>
+                         <div class="form-group">
+                          <label for="exampleInputEmail1">Jabatan</label> <br />
+                          <?= $d->nama_jabatan; ?>
+                        </div>
+                         <div class="form-group">
+                          <label for="exampleInputEmail1">Pendidikan Terakhir</label> <br />
+                          <?= $d->pendidikan_terakhir; ?> 
+                          
+                        </div>
+                         <div class="form-group">
+                          <label for="exampleInputEmail1">TMT</label> <br />
+                          <?= $d->tmt; ?>
+                          
+                        </div>
+                        
+                       
+              </div>
+            </div>
+           
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-envelope bg-blue"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                      <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-user bg-aqua"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
+              <div class="tab-pane" id="keluarga">
+              <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenis</th>
+                                <th>Nama</th>
+                                <th>TTL</th>
+                                <th>Opsi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                $no=1;
+                foreach ($dt_keluarga as $c):?>
+                  
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $c->jenis_keluarga; ?></td>
+                        <td><?= $c->nama_keluarga; ?></td>
+                        <td><?= $c->tempat_lahir_keluarga; ?>, <?= $c->tgl_lahir_keluarga; ?></td>
+                        <td><div align="center"><a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"  data-tooltip="tooltip"
+  data-bs-placement="top"
+  title="Delete" 
+onclick="return confirm('anda yakin ingin menghapus data ini')"
+href="<?php echo base_url('admin/delete_keluarga/'.$c->id_keluarga);?>" 
+><i class="fa fa-trash fa-sm"></i></a> <a class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"  data-tooltip="tooltip"
+  data-bs-placement="top"
+  title="Edit" href="javascript:;"
+       data-toggle="modal" data-target="#edit"   
+          data-id="<?= $c->id_keluarga ?>"
+          data-nama_keluarga="<?= $c->nama_keluarga ?>"
+          > 
+<i class="fa fa-edit fa-sm"></i></a></div></td>
+                    </tr>
+                   <?php endforeach; ?>
+                          
+                        </tbody>
+                      
+                    </table>
               </div>
               <!-- /.tab-pane -->
 

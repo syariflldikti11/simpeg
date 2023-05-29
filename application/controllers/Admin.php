@@ -107,6 +107,7 @@ class Admin extends CI_Controller
     {
         $this->db->set('id_pegawai', 'UUID()', FALSE);
         $nip = $this->input->post('nip');
+        $nama_pegawai = $this->input->post('nama_pegawai');
         $nik = $this->input->post('nik');
         $kk = $this->input->post('kk');
         $tempat_lahir = $this->input->post('tempat_lahir');
@@ -122,6 +123,7 @@ class Admin extends CI_Controller
         $file = $this->uploadFile();
         $data = array(
             'nip' => $nip,
+            'nama_pegawai' => $nama_pegawai,
             'nik' => $nik,
             'kk' => $kk,
             'tempat_lahir' => $tempat_lahir,
@@ -146,6 +148,7 @@ class Admin extends CI_Controller
     function update_pegawai(){
        $id_pegawai = $this->input->post('id_pegawai');
        $nip = $this->input->post('nip');
+       $nama_pegawai = $this->input->post('nama_pegawai');
         $nik = $this->input->post('nik');
         $kk = $this->input->post('kk');
         $tempat_lahir = $this->input->post('tempat_lahir');
@@ -169,6 +172,7 @@ class Admin extends CI_Controller
             $data_update = array(
                 'id_pegawai' => $id_pegawai,
                 'nip' => $nip,
+                'nama_pegawai' => $nama_pegawai,
             'nik' => $nik,
             'kk' => $kk,
             'tempat_lahir' => $tempat_lahir,
@@ -204,12 +208,15 @@ class Admin extends CI_Controller
         redirect('admin/pegawai');
 
     }
-   function profil($id)
+   function profil($id=FALSE)
     {
         $data = array(
             'judul' => 'Profil Pegawai',
             'menu' => 'Pegawai',
             'sub_menu' => 'Profil Pegawai',
+            'id' => $id,
+            'd' => $this->m_admin->view_pegawai($id),
+            'dt_keluarga' => $this->m_admin->view_keluarga($id),
         );
         $this->template->load('admin/template', 'admin/profil', $data);
     }

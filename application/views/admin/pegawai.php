@@ -27,6 +27,7 @@
                             <tr>
                                 <th>No</th>
                                   <th>Opsi</th>
+                                  <th>Nama</th>
                                 <th>NIP</th>
                                 <th>NIK</th>
                                 <th>KK</th>
@@ -65,6 +66,7 @@ href="<?php echo base_url('admin/delete_pegawai/'.$d->id_pegawai.'/'.$d->file);?
   title="Profil" 
 href="<?php echo base_url('admin/profil/'.$d->id_pegawai);?>" 
 ><i class="fa fa-eye fa-sm"></i></a> </div></td>
+                        <td><?= $d->nama_pegawai; ?></td>
                         <td><?= $d->nip; ?></td>
                         <td><?= $d->nik; ?></td>
                         <td><?= $d->kk; ?></td>
@@ -113,6 +115,11 @@ href="<?php echo base_url('admin/profil/'.$d->id_pegawai);?>"
              echo validation_errors();                       
     echo form_open_multipart('admin/simpan_pegawai'); ?>
                      <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Nama</label>
+                        <input type="text" class="form-control"  name="nama_pegawai"  >
+                        
+                      </div>
                <div class="form-group">
                         <label for="exampleInputEmail1">NIP</label>
                         <input type="text" class="form-control"  name="nip"  >
@@ -228,6 +235,11 @@ href="<?php echo base_url('admin/profil/'.$d->id_pegawai);?>"
     echo form_open_multipart('admin/update_pegawai'); ?>
                      <div class="col-md-6">
                       <input type="hidden" class="form-control" value="<?= $f->id_pegawai; ?>" name="id_pegawai" required >
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Nama</label>
+                        <input type="text" class="form-control"  name="nama_pegawai"  value="<?= $f->nama_pegawai; ?>"  >
+                        
+                      </div>
                <div class="form-group">
                         <label for="exampleInputEmail1">NIP</label>
                         <input type="text" class="form-control"  name="nip" value="<?= $f->nip; ?>"  >
