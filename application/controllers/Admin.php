@@ -220,6 +220,29 @@ class Admin extends CI_Controller
         );
         $this->template->load('admin/template', 'admin/profil', $data);
     }
+    function simpan_keluarga()
+    {
+        $id = $this->input->post('id_pegawai');
+        $this->db->set('id_keluarga', 'UUID()', FALSE);
+        $this->form_validation->set_rules('nama_keluarga', 'nama_keluarga', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/keluarga');
+        else {
+
+            $this->m_umum->set_data("keluarga");
+            $notif = "Tambah Keluarga Berhasil";
+            $this->session->set_flashdata('success', $notif);
+            redirect(base_url() . "admin/profil/".$id);
+        }
+    }
+    function delete_keluarga($id,$id_pegawai)
+    {
+
+        $this->m_umum->hapus('keluarga', 'id_keluarga', $id);
+        $notif = "Keluarga berhasil dihapuskan";
+        $this->session->set_flashdata('delete', $notif);
+        redirect(base_url() . "admin/profil/" . $id_pegawai);
+    }
     function jabatan()
     {
         $data = array(

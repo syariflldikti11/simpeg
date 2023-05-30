@@ -128,6 +128,7 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="keluarga">
+             <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" href="#">Tambah </a><p>
               <table id="example1" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -152,7 +153,7 @@
   data-bs-placement="top"
   title="Delete" 
 onclick="return confirm('anda yakin ingin menghapus data ini')"
-href="<?php echo base_url('admin/delete_keluarga/'.$c->id_keluarga);?>" 
+href="<?php echo base_url('admin/delete_keluarga/'.$c->id_keluarga.'/'.$id);?>" 
 ><i class="fa fa-trash fa-sm"></i></a> <a class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"  data-tooltip="tooltip"
   data-bs-placement="top"
   title="Edit" href="javascript:;"
@@ -169,6 +170,59 @@ href="<?php echo base_url('admin/delete_keluarga/'.$c->id_keluarga);?>"
                     </table>
               </div>
               <!-- /.tab-pane -->
+              <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Tambah Keluarga</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('admin/simpan_keluarga'); ?>
+    <div class="form-group">
+    <input type="hidden" class="form-control"  name="id_pegawai" value="<?= $id; ?>" required  >
+                        <label for="exampleInputEmail1">Hubungan Keluarga</label>
+                        <select class="form-control"  name="jenis_keluarga">
+                       
+                          <option>--Pilih Hubungan Keluarga--</option>
+                      <option value="Ayah">Ayah</option>
+                      <option value="Ibu">Ibu</option>
+                      <option value="Istri">Istri</option>
+                      <option value="Anak">Anak</option>
+                          </select>
+                        
+                      </div>
+                   <div class="form-group">
+                        <label for="exampleInputEmail1">Nama </label>
+                        <input type="text" class="form-control"  name="nama_keluarga" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tempat Lahir </label>
+                        <input type="text" class="form-control"  name="tempat_lahir_keluarga" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal Lahir </label>
+                        <input type="date" class="form-control"  name="tgl_lahir_keluarga" required  >
+                        
+                      </div>
+                      
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Tambah">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
 
               <div class="tab-pane" id="settings">
                 <form class="form-horizontal">

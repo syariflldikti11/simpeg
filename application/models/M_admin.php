@@ -37,7 +37,7 @@ class M_admin extends CI_Model{
 		 $this->db->join('pegawai b','a.id_pegawai=b.id_pegawai','left');
 		 $this->db->where('a.id_pegawai',$id);
 		$query = $this->db->get();
-		return $query->row();
+		return $query->result();
 	}
  
 }
