@@ -2,15 +2,15 @@
 
 class M_login extends CI_Model{
 
-   function auth($nip,$aplikasi){
-		$this->db->select('*');
-		$this->db->from('pengguna');
-        $this->db->join('pegawai', 'pegawai.id_pegawai = pengguna.id_pegawai');
-		$this->db->where('pegawai.nik',$nik);
-		$this->db->limit(1);
-		$query = $this->db->get()->row();
-		return $query;
-		}
+		function auth($username,$password){
+			$this->db->select('*');
+			$this->db->from('pengguna');
+			$this->db->join('pegawai ','pegawai.id_pegawai=pengguna.id_pegawai','left');
+			$this->db->where('username = "'.$username.'" AND password=md5 ("'.$password.'") ');
+			$this->db->limit(1);
+			$query = $this->db->get();
+			return $query;
+			}
 	
  
  

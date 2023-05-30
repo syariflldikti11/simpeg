@@ -21,7 +21,16 @@ class M_admin extends CI_Model{
 	   $query = $this->db->get();
 	   return $query->result();
 	}
-	function view_pegawai($id = FALSE)
+	function get_user()
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('pengguna a');
+		$this->db->join('pegawai b','a.id_pegawai=b.id_pegawai','left');
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function view_pegawai($id)
 	{
 		$this->db->select('*');
 		$this->db->from('pegawai a');
@@ -30,7 +39,7 @@ class M_admin extends CI_Model{
 		$query = $this->db->get();
 		return $query->row();
 	}
-	function view_keluarga($id = FALSE)
+	function view_keluarga($id)
 	{
 		$this->db->select('*');
 		$this->db->from('keluarga a');

@@ -330,7 +330,8 @@
 
           <!-- Optionally, you can add icons to the links -->
           <li <?php if ($menu == 'Dashboard') echo "class=active"; ?>><a href="<?= base_url('admin/index'); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-
+          <li <?php if ($menu == 'User') echo "class=active"; ?>><a href="<?= base_url('admin/user'); ?>"><i class="fa fa-user"></i> <span>
+                User</span></a></li>
           <li class="treeview <?php if ($menu == 'Data Master') echo 'active'; ?>">
             <a href="#"><i class="fa fa-folder"></i> <span>Data Master</span>
               <span class="pull-right-container">
@@ -345,7 +346,7 @@
             </ul>
           </li>
           <li <?php if ($menu == 'Pegawai') echo "class=active"; ?>><a href="<?= base_url('admin/pegawai'); ?>"><i class="fa fa-users"></i> <span>Pegawai</span></a></li>
-          <li <?php if ($menu == 'arsip_kepegawaian') echo "class=active"; ?>><a href="<?= base_url('admin/arsip_kepegawaian'); ?>"><i class="fa fa-file"></i> <span>Arsip
+          <li <?php if ($menu == 'Arsip Kepegawaian') echo "class=active"; ?>><a href="<?= base_url('admin/arsip_kepegawaian'); ?>"><i class="fa fa-file"></i> <span>Arsip
                 Kepegawaian</span></a></li>
 
           <li class="treeview">

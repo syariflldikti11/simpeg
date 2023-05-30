@@ -9,7 +9,10 @@ class Admin extends CI_Controller
         $this->load->database();
         $this->load->model('m_umum');
         $this->load->model('m_admin');
-
+        if($this->session->userdata('masuk') != TRUE){
+            $url=base_url();
+            redirect($url);
+        }
     }
 
 
@@ -21,7 +24,44 @@ class Admin extends CI_Controller
         );
         $this->template->load('admin/template', 'admin/home', $data);
     }
+    function user()
+    {
+        $data = array(
+            'judul' => 'Data User',
+            'menu' => 'User',
+            'sub_menu' => '',
+            'dt_user' => $this->m_admin->get_user('user'),
+            'dt_pegawai' => $this->m_admin->get_pegawai('pegawai'),
+        );
+        $this->template->load('admin/template', 'admin/user', $data);
+    }
+    function simpan_user()
+    {
+        $this->db->set('id_pengguna', 'UUID()', FALSE);
+        $id_pegawai = $this->input->post('id_pegawai');
+        $password = $this->input->post('password');
+        $role = $this->input->post('role');
+        $data = array(
+            'id_pegawai' => $id_pegawai,
+            'username' => $id_pegawai,
+            'role' => $role,
+            'password' => md5($password),
+        );
 
+        $this->m_umum->input_data($data, 'pengguna');
+        $notif = "User Berhasil Ditambahkan";
+        $this->session->set_flashdata('success', $notif);
+        redirect('admin/user');
+
+    }
+    function delete_user($id)
+    {
+
+        $this->m_umum->hapus('pengguna', 'id_pengguna', $id);
+        $notif = "User Berhasil dihapuskan";
+        $this->session->set_flashdata('delete', $notif);
+        redirect('admin/user');
+    }
     function arsip_kepegawaian()
     {
         $data = array(
@@ -208,7 +248,7 @@ class Admin extends CI_Controller
         redirect('admin/pegawai');
 
     }
-   function profil($id=FALSE)
+   function profil($id)
     {
         $data = array(
             'judul' => 'Profil Pegawai',

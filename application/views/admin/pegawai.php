@@ -55,7 +55,7 @@
   data-bs-placement="top"
   title="Delete" 
 onclick="return confirm('anda yakin ingin menghapus data ini')"
-href="<?php echo base_url('admin/delete_pegawai/'.$d->id_pegawai.'/'.$d->file);?>" 
+href="<?= base_url('admin/delete_pegawai/'.$d->id_pegawai.'/'.$d->file);?>" 
 ><i class="fa fa-trash fa-sm"></i></a> <a class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"  data-tooltip="tooltip"
   data-bs-placement="top"
   title="Edit" href="#"
@@ -64,7 +64,7 @@ href="<?php echo base_url('admin/delete_pegawai/'.$d->id_pegawai.'/'.$d->file);?
 <i class="fa fa-edit fa-sm"></i></a> <a class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"  data-tooltip="tooltip"
   data-bs-placement="top"
   title="Profil" 
-href="<?php echo base_url('admin/profil/'.$d->id_pegawai);?>" 
+href="<?= base_url('admin/profil/'.$d->id_pegawai);?>" 
 ><i class="fa fa-eye fa-sm"></i></a> </div></td>
                         <td><?= $d->nama_pegawai; ?></td>
                         <td><?= $d->nip; ?></td>

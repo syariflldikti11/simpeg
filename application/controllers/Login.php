@@ -12,24 +12,15 @@ class Login extends CI_Controller
     }
     public function index()
     {
-        $id_aplikasi = $this->session->userdata('id_aplikasi');
-        if ($id_aplikasi == 1) {
-            redirect(site_url('admin'));
-        }
-        if ($id_aplikasi == 2) {
-            redirect(site_url('pokja'));
-        }
-        if ($id_aplikasi == 3) {
-            redirect(site_url('kepala'));
-        }
-        if ($id_aplikasi == 4) {
-            redirect(site_url('kabagum'));
-        }
-        if ($id_aplikasi == 5) {
+        $role = $this->session->userdata('role');
+        if ($role == 1) {
             redirect(site_url('pegawai'));
+        }
+        if ($role == 2) {
+            redirect(site_url('admin'));
         } else {
             $data = array(
-           
+
                 'action' => 'login/auth_action',
             );
             $this->load->view('login/login', $data);
@@ -38,54 +29,27 @@ class Login extends CI_Controller
 
     public function auth_action()
     {
-        $nip = htmlspecialchars($this->input->post('nip', TRUE), ENT_QUOTES);
+        $username = htmlspecialchars($this->input->post('username', TRUE), ENT_QUOTES);
         $password = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
-        $aplikasi = htmlspecialchars($this->input->post('aplikasi', TRUE), ENT_QUOTES);
-        $cek_login = $this->m_login->auth($nip, $aplikasi);
-        if ($cek_login) {
-
-            if (password_verify($password, $cek_login->password)) {
-                if ($cek_login->id_aplikasi == 1) {
-                    $this->session->set_userdata('id_pegawai', $cek_login->id_pegawai);
-                    $this->session->set_userdata('id_role', $cek_login->id_role);
-                    $this->session->set_userdata('id_aplikasi', $cek_login->id_aplikasi);
-                    redirect('admin');
-                }
-                if ($cek_login->id_aplikasi == 2) {
-                    $this->session->set_userdata('id_pegawai', $cek_login->id_pegawai);
-                    $this->session->set_userdata('id_role', $cek_login->id_role);
-                    $this->session->set_userdata('id_aplikasi', $cek_login->id_aplikasi);
-                    $this->session->set_userdata('id_bagian_pegawai', $cek_login->id_bagian_pegawai);
-                    redirect('pokja');
-                }
-                if ($cek_login->id_aplikasi == 3) {
-                    $this->session->set_userdata('id_pegawai', $cek_login->id_pegawai);
-                    $this->session->set_userdata('id_role', $cek_login->id_role);
-                    $this->session->set_userdata('id_aplikasi', $cek_login->id_aplikasi);
-                    $this->session->set_userdata('id_bagian_pegawai', $cek_login->id_bagian_pegawai);
-                    redirect('kepala');
-                }
-                if ($cek_login->id_aplikasi == 4) {
-                    $this->session->set_userdata('id_pegawai', $cek_login->id_pegawai);
-                    $this->session->set_userdata('id_role', $cek_login->id_role);
-                    $this->session->set_userdata('id_aplikasi', $cek_login->id_aplikasi);
-                    $this->session->set_userdata('id_bagian_pegawai', $cek_login->id_bagian_pegawai);
-                    redirect('kabagum');
-                }
-                if ($cek_login->id_aplikasi == 5) {
-                    $this->session->set_userdata('id_pegawai', $cek_login->id_pegawai);
-                    $this->session->set_userdata('id_role', $cek_login->id_role);
-                    $this->session->set_userdata('id_aplikasi', $cek_login->id_aplikasi);
-                    $this->session->set_userdata('id_bagian_pegawai', $cek_login->id_bagian_pegawai);
-                    redirect('pegawai');
-                } else {
-                    $notif = "Gagal";
-                    $this->session->set_flashdata('gagal', $notif);
-
-                    redirect('login');
-                }
+        $cek_login = $this->m_login->auth($username, $password);
+        if ($cek_login->num_rows() > 0) {
+            $data = $cek_login->row();
+            $this->session->set_userdata('masuk', TRUE);
+            if ($data->row == '1') { 
+                $this->session->set_userdata('role', $cek_login->role);
+                redirect('pegawai');
+            } if ($data->row == '2') { 
+                $this->session->set_userdata('role', $cek_login->role);
+                redirect('admin');
             }
-        } else {
+            else {
+                $notif = "Gagal";
+                $this->session->set_flashdata('gagal', $notif);
+                redirect('login');
+            }
+
+        }
+        else {
             $notif = "username/Password Salah";
             $this->session->set_flashdata('gagal', $notif);
 
