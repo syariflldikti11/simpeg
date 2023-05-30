@@ -35,21 +35,20 @@ class Login extends CI_Controller
         if ($cek_login->num_rows() > 0) {
             $data = $cek_login->row();
             $this->session->set_userdata('masuk', TRUE);
-            if ($data->row == '1') { 
+            if ($data->row == '1') {
                 $this->session->set_userdata('role', $cek_login->role);
                 redirect('pegawai');
-            } if ($data->row == '2') { 
+            }
+            if ($data->row == '2') {
                 $this->session->set_userdata('role', $cek_login->role);
                 redirect('admin');
-            }
-            else {
+            } else {
                 $notif = "Gagal";
                 $this->session->set_flashdata('gagal', $notif);
                 redirect('login');
             }
 
-        }
-        else {
+        } else {
             $notif = "username/Password Salah";
             $this->session->set_flashdata('gagal', $notif);
 
