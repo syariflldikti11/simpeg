@@ -48,6 +48,16 @@ class M_admin extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	function view_pendidikan($id)
+	{
+		$this->db->select('*');
+		$this->db->from('pendidikan a');
+		 $this->db->join('pegawai b','a.id_pegawai=b.id_pegawai','left');
+		 $this->db->where('a.id_pegawai',$id);
+		$query = $this->db->get();
+		return $query->result();
+	}
  
 }
 ?>

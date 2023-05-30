@@ -258,6 +258,7 @@ class Admin extends CI_Controller
             'id' => $id,
             'd' => $this->m_admin->view_pegawai($id),
             'dt_keluarga' => $this->m_admin->view_keluarga($id),
+            'dt_pendidikan' => $this->m_admin->view_pendidikan($id),
         );
         $this->template->load('admin/template', 'admin/profil', $data);
     }
@@ -276,11 +277,60 @@ class Admin extends CI_Controller
             redirect(base_url() . "admin/profil/".$id);
         }
     }
+    function update_keluarga()
+    {
+        $id = $this->input->post('id_pegawai');
+        $this->form_validation->set_rules('id_keluarga', 'id_keluarga', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/keluarga');
+        else {
+            $this->m_umum->update_data("keluarga");
+            $notif = " Update keluarga Berhasil";
+            $this->session->set_flashdata('update', $notif);
+            redirect(base_url() . "admin/profil/".$id);
+        }
+    }
     function delete_keluarga($id,$id_pegawai)
     {
 
         $this->m_umum->hapus('keluarga', 'id_keluarga', $id);
         $notif = "Keluarga berhasil dihapuskan";
+        $this->session->set_flashdata('delete', $notif);
+        redirect(base_url() . "admin/profil/" . $id_pegawai);
+    }
+    function simpan_pendidikan()
+    {
+        $id = $this->input->post('id_pegawai');
+        $this->db->set('id_pendidikan', 'UUID()', FALSE);
+        $this->form_validation->set_rules('nama_pendidikan', 'nama_pendidikan', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/pendidikan');
+        else {
+
+            $this->m_umum->set_data("pendidikan");
+            $notif = "Tambah Pendidikan Berhasil";
+            $this->session->set_flashdata('success', $notif);
+            redirect(base_url() . "admin/profil/".$id);
+        }
+    }
+    function update_pendidikan()
+    {
+        $id = $this->input->post('id_pegawai');
+        $this->form_validation->set_rules('id_pendidikan', 'id_pendidikan', 'required');
+        if ($this->form_validation->run() === FALSE)
+            redirect('admin/pendidikan');
+        else {
+            $this->m_umum->update_data("pendidikan");
+            $notif = " Update Pendidikan Berhasil";
+            $this->session->set_flashdata('update', $notif);
+            redirect(base_url() . "admin/profil/".$id);
+        }
+    }
+    function delete_pendidikan($id,$id_pegawai)
+    {
+
+        $this->m_umum->hapus('pendidikan', 'id_pendidikan', $id);
+        $notif = "Pendidikan berhasil dihapuskan";
         $this->session->set_flashdata('delete', $notif);
         redirect(base_url() . "admin/profil/" . $id_pegawai);
     }

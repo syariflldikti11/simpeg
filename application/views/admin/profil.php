@@ -42,7 +42,7 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#pribadi" data-toggle="tab">Data Pribadi</a></li>
               <li><a href="#keluarga" data-toggle="tab">Keluarga</a></li>
-              <li><a href="#settings" data-toggle="tab">Settings</a></li>
+              <li><a href="#pendidikan" data-toggle="tab">Pendidikan</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="pribadi">
@@ -160,6 +160,8 @@ href="<?php echo base_url('admin/delete_keluarga/'.$c->id_keluarga.'/'.$id);?>"
        data-toggle="modal" data-target="#edit"   
           data-id="<?= $c->id_keluarga ?>"
           data-nama_keluarga="<?= $c->nama_keluarga ?>"
+          data-tempat_lahir_keluarga="<?= $c->tempat_lahir_keluarga ?>"
+          data-tgl_lahir_keluarga="<?= $c->tgl_lahir_keluarga ?>"
           > 
 <i class="fa fa-edit fa-sm"></i></a></div></td>
                     </tr>
@@ -223,59 +225,221 @@ href="<?php echo base_url('admin/delete_keluarga/'.$c->id_keluarga.'/'.$id);?>"
               </div>
             </div>
 
-
-              <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
+            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Edit Keluarga</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('admin/update_keluarga'); ?>
+                   <input type="hidden" class="form-control" id="id"  name="id_keluarga" required>
+                   <input type="hidden" class="form-control"  name="id_pegawai" value="<?= $id; ?>" required  >
+                   <div class="form-group">
+                        <label for="exampleInputEmail1">Nama </label>
+                        <input type="text" class="form-control"  name="nama_keluarga"  id="nama_keluarga" required  >
+                        
                       </div>
-                    </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tempat Lahir </label>
+                        <input type="text" class="form-control"  name="tempat_lahir_keluarga" id="tempat_lahir_keluarga" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal Lahir </label>
+                        <input type="date" class="form-control"  name="tgl_lahir_keluarga" id="tgl_lahir_keluarga" required  >
+                        
+                      </div>
+                     
                   </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Update">
                   </div>
-                </form>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <script>
+    $(document).ready(function() {
+      
+        $('#edit').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal   = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#nama_keluarga').attr("value",div.data('nama_keluarga'));
+            modal.find('#tempat_lahir_keluarga').attr("value",div.data('tempat_lahir_keluarga'));
+            modal.find('#tgl_lahir_keluarga').attr("value",div.data('tgl_lahir_keluarga'));
+        });
+    });
+</script>
+
+              <div class="tab-pane" id="pendidikan">
+                
+             <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpend" href="#">Tambah </a><p>
+              <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenjang</th>
+                                <th>Nama Sekolah</th>
+                                <th>Jurusan</th>
+                                <th>Tahun Lulus</th>
+                                <th>No Ijazah</th>
+                                <th>Opsi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                $no=1;
+                foreach ($dt_pendidikan as $f):?>
+                  
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $f->jenjang; ?></td>
+                        <td><?= $f->nama_sekolah; ?></td>
+                        <td><?= $f->jurusan; ?></td>
+                        <td><?= $f->tahun_lulus; ?></td>
+                        <td><?= $f->no_ijazah; ?>td>
+                        <td><div align="center"><a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"  data-tooltip="tooltip"
+  data-bs-placement="top"
+  title="Delete" 
+onclick="return confirm('anda yakin ingin menghapus data ini')"
+href="<?php echo base_url('admin/delete_pendidikan/'.$f->id_pendidikan.'/'.$id);?>" 
+><i class="fa fa-trash fa-sm"></i></a> <a class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"  data-tooltip="tooltip"
+  data-bs-placement="top"
+  title="Edit" href="javascript:;"
+       data-toggle="modal" data-target="#editpend"   
+          data-id="<?= $f->id_pendidikan ?>"
+          data-jenjang="<?= $f->jenjang ?>"
+          data-nama_sekolah="<?= $f->nama_sekolah ?>"
+          data-tahun_lulus="<?= $f->tahun_lulus ?>"
+          data-no_ijazah="<?= $f->no_ijazah ?>"
+          > 
+<i class="fa fa-edit fa-sm"></i></a></div></td>
+                    </tr>
+                   <?php endforeach; ?>
+                          
+                        </tbody>
+                      
+                    </table>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="modal fade" id="addpend" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Tambah pendidikan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('admin/simpan_pendidikan'); ?>
+    <div class="form-group">
+    <input type="hidden" class="form-control"  name="id_pegawai" value="<?= $id; ?>" required  >
+                        <label for="exampleInputEmail1">Hubungan pendidikan</label>
+                        <select class="form-control"  name="jenis_pendidikan">
+                       
+                          <option>--Pilih Jenjang--</option>
+                      <option value="SD">SD</option>
+                      <option value="SMP">SMP</option>
+                      <option value="Istri">Istri</option>
+                      <option value="Anak">Anak</option>
+                          </select>
+                        
+                      </div>
+                   <div class="form-group">
+                        <label for="exampleInputEmail1">Nama </label>
+                        <input type="text" class="form-control"  name="nama_pendidikan" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tempat Lahir </label>
+                        <input type="text" class="form-control"  name="tempat_lahir_pendidikan" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal Lahir </label>
+                        <input type="date" class="form-control"  name="tgl_lahir_pendidikan" required  >
+                        
+                      </div>
+                      
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Tambah">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="editpend" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Edit pendidikan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('admin/update_pendidikan'); ?>
+                   <input type="hidden" class="form-control" id="id"  name="id_pendidikan" required>
+                   <input type="hidden" class="form-control"  name="id_pegawai" value="<?= $id; ?>" required  >
+                   <div class="form-group">
+                        <label for="exampleInputEmail1">Nama </label>
+                        <input type="text" class="form-control"  name="nama_pendidikan"  id="nama_pendidikan" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tempat Lahir </label>
+                        <input type="text" class="form-control"  name="tempat_lahir_pendidikan" id="tempat_lahir_pendidikan" required  >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal Lahir </label>
+                        <input type="date" class="form-control"  name="tgl_lahir_pendidikan" id="tgl_lahir_pendidikan" required  >
+                        
+                      </div>
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Update">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <script>
+    $(document).ready(function() {
+      
+        $('#edit').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal   = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#nama_pendidikan').attr("value",div.data('nama_pendidikan'));
+            modal.find('#tempat_lahir_pendidikan').attr("value",div.data('tempat_lahir_pendidikan'));
+            modal.find('#tgl_lahir_pendidikan').attr("value",div.data('tgl_lahir_pendidikan'));
+        });
+    });
+</script>
               </div>
               <!-- /.tab-pane -->
             </div>

@@ -27,6 +27,7 @@
                             <tr>
                                 <th>No</th>
                                   <th>Opsi</th>
+                                  <th>Foto</th>
                                   <th>Nama</th>
                                 <th>NIP</th>
                                 <th>NIK</th>
@@ -40,7 +41,7 @@
                                 <th>Jabatan</th>
                                 <th>Pendidikan</th>
                                 <th>TMT</th>
-                                <th>File</th>
+                            
                               
                             </tr>
                         </thead>
@@ -66,6 +67,8 @@ href="<?= base_url('admin/delete_pegawai/'.$d->id_pegawai.'/'.$d->file);?>"
   title="Profil" 
 href="<?= base_url('admin/profil/'.$d->id_pegawai);?>" 
 ><i class="fa fa-eye fa-sm"></i></a> </div></td>
+<td><a target="_blank" href="<?= base_url();?>/upload/<?= $d->file; ?>"><img src="<?= base_url();?>/upload/<?= $d->file; ?>" width="70px" height="50px"></a></td>
+                       
                         <td><?= $d->nama_pegawai; ?></td>
                         <td><?= $d->nip; ?></td>
                         <td><?= $d->nik; ?></td>
@@ -80,7 +83,6 @@ href="<?= base_url('admin/profil/'.$d->id_pegawai);?>"
                            <td><?= $d->pendidikan_terakhir; ?></td>
                         <td><?= $d->tmt; ?></td>
                      
-                        <td><a target="_blank" href="<?= base_url();?>/upload/<?= $d->file; ?>"><img src="<?= base_url();?>/upload/<?= $d->file; ?>" width="70px" height="50px"></a></td>
                        
                     </tr>
                    <?php endforeach; ?>

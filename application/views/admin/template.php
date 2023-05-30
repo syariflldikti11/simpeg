@@ -624,6 +624,11 @@
       $('#example1').DataTable()
     })
   </script>
+   <script>
+    $(function () {
+      $('#example2').DataTable()
+    })
+  </script>
 </body>
 
 </html>
