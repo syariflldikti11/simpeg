@@ -11,7 +11,7 @@ class Admin extends CI_Controller
         $this->load->model('m_admin');
         $role = $this->session->userdata('role');
         $masuk = $this->session->userdata('masuk');
-        if($masuk == TRUE && $role <>2){
+        if( $role <>2){
             $url=base_url();
             redirect($url);
         }
@@ -259,6 +259,9 @@ class Admin extends CI_Controller
             'd' => $this->m_admin->view_pegawai($id),
             'dt_keluarga' => $this->m_admin->view_keluarga($id),
             'dt_pendidikan' => $this->m_admin->view_pendidikan($id),
+            'dt_arsip' => $this->m_admin->view_arsip($id),
+            'dt_jenis_arsip' => $this->m_umum->get_data('jenis_arsip'),
+            'dt_jabatan' => $this->m_umum->get_data('jabatan'),
         );
         $this->template->load('admin/template', 'admin/profil', $data);
     }
@@ -302,7 +305,7 @@ class Admin extends CI_Controller
     {
         $id = $this->input->post('id_pegawai');
         $this->db->set('id_pendidikan', 'UUID()', FALSE);
-        $this->form_validation->set_rules('nama_pendidikan', 'nama_pendidikan', 'required');
+        $this->form_validation->set_rules('nama_sekolah', 'nama_sekolah', 'required');
         if ($this->form_validation->run() === FALSE)
             redirect('admin/pendidikan');
         else {
@@ -333,6 +336,65 @@ class Admin extends CI_Controller
         $notif = "Pendidikan berhasil dihapuskan";
         $this->session->set_flashdata('delete', $notif);
         redirect(base_url() . "admin/profil/" . $id_pegawai);
+    }
+    function simpan_arsip_pegawai()
+    {
+        $this->db->set('id_arsip_pegawai', 'UUID()', FALSE);
+        $id_jenis_arsip = $this->input->post('id_jenis_arsip');
+        $keterangan = $this->input->post('keterangan');
+        $id_pegawai = $this->input->post('id_pegawai');
+        $file = $this->uploadFile();
+        $data = array(
+            'id_jenis_arsip' => $id_jenis_arsip,
+            'keterangan' => $keterangan,
+            'id_pegawai' => $id_pegawai,
+            'file' => $file
+        );
+
+        $this->m_umum->input_data($data, 'arsip_pegawai');
+        $notif = "Arsip pegawai Berhasil Ditambahkan";
+        $this->session->set_flashdata('success', $notif);
+        redirect('admin/arsip_pegawai');
+
+    }
+    function update_arsip_pegawai(){
+        $id_arsip_pegawai = $this->input->post('id_arsip_pegawai');
+        $id_pegawai = $this->input->post('id_pegawai');
+        $keterangan = $this->input->post('keterangan');
+        $old = $this->input->post('old_file');
+            
+            if (!empty($_FILES["file"]["name"])) {
+                  $file = $this->uploadFile();
+                  unlink("./upload/$old");
+                } else {
+                    $file = $old;
+                }
+            $data_update = array(
+                'id_arsip_pegawai' => $id_arsip_pegawai,
+                'id_pegawai' => $id_pegawai,
+                'keterangan' => $keterangan,
+                'file' => $file
+                );
+                $where = array('id_arsip_pegawai' => $id_arsip_pegawai);
+                $res = $this->m_umum->UpdateData('arsip_pegawai', $data_update, $where);
+                if($res>=1){
+                   
+                    $notif = "Update Arsip pegawai Berhasil ";
+                    $this->session->set_flashdata('update', $notif);
+                    redirect('admin/arsip_pegawai');
+                }else{
+                    echo "<h1>GAGAL</h1>";
+                }
+            }
+    function delete_arsip_pegawai($id,$file)
+    {
+
+        $this->m_umum->hapus('arsip_pegawai', 'id_arsip_pegawai', $id);
+        unlink("./upload/$file");
+        $notif = "Arsip pegawai berhasil dihapuskan";
+        $this->session->set_flashdata('delete', $notif);
+        redirect('admin/pegawai');
+
     }
     function jabatan()
     {

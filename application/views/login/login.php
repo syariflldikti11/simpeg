@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/plugins/iCheck/square/blue.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -78,6 +81,21 @@
 <script src="<?= base_url(); ?>/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="<?= base_url(); ?>/assets/plugins/iCheck/icheck.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script type="text/javascript">
+
+
+  <?php if ($this->session->flashdata('success')) { ?>
+    toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+  <?php } else if ($this->session->flashdata('delete')) { ?>
+      toastr.error("<?php echo $this->session->flashdata('delete'); ?>");
+  <?php } else if ($this->session->flashdata('update')) { ?>
+        toastr.info("<?php echo $this->session->flashdata('update'); ?>");
+  <?php } ?>
+
+
+</script>
 <script>
   $(function () {
     $('input').iCheck({

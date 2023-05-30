@@ -39,7 +39,7 @@
                         <td><?= $no++; ?></td>
                         <td><?= $d->nama_jenis_arsip; ?></td>
                         <td><?= $d->keterangan; ?></td>
-                        <td><a target="_blank" href="<?= base_url();?>/upload/<?= $d->file; ?>"><i class="fa fa-file fa-sm"></i></a></td>
+                        <td><a target="_blank" href="<?= base_url();?>upload/<?= $d->file; ?>"><i class="fa fa-file fa-sm"></i></a></td>
                         <td><div align="center"><a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"  data-tooltip="tooltip"
   data-bs-placement="top"
   title="Delete" 

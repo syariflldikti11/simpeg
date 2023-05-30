@@ -90,7 +90,7 @@ href="<?php echo base_url('admin/delete_user/'.$d->id_pengguna);?>"
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Password</label>
-                       <input type="text" class="form-control" name="password">
+                       <input type="text" class="form-control" name="password" value="12345">
                         
                       </div>
                       <div class="form-group">

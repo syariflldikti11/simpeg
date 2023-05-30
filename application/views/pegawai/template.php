@@ -87,6 +87,9 @@
                   <div class="pull-right">
                     <a href="<?= base_url('login/logout');?>" class="btn btn-default btn-flat">Log out</a>
                   </div>
+                  <div class="pull-left">
+                    <a data-toggle="modal" data-target="#ganti" href="#" class="btn btn-default btn-flat">Ganti Password</a>
+                  </div>
                 </li>
               </ul>
             </li>
@@ -97,6 +100,34 @@
 
       </nav>
     </header>
+    <div class="modal fade" id="ganti" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Ganti Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/update_password'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Password Baru</label>
+                        <input type="text" class="form-control"  name="password"  required >
+                        
+                      </div>
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Update">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
  
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
@@ -108,7 +139,7 @@
             <img src="<?= base_url(); ?>/upload/<?= $foto; ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Admin </p>
+            <p>Pegawai </p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -118,37 +149,14 @@
 
           <!-- Optionally, you can add icons to the links -->
           <li <?php if ($menu == 'Dashboard')
-            echo "class=active"; ?>><a href="<?= base_url('admin/index'); ?>"><i
+            echo "class=active"; ?>><a href="<?= base_url('pegawai/index'); ?>"><i
                 class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-          <li <?php if ($menu == 'User')
-            echo "class=active"; ?>><a href="<?= base_url('admin/user'); ?>"><i
-                class="fa fa-user"></i> <span>
-                User</span></a></li>
-          <li class="treeview <?php if ($menu == 'Data Master')
-            echo 'active'; ?>">
-            <a href="#"><i class="fa fa-folder"></i> <span>Data Master</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li <?php if ($sub_menu == 'Jabatan')
-                echo "class=active"; ?>><a
-                  href="<?= base_url('admin/jabatan'); ?>">Jabatan</a></li>
-              <li <?php if ($sub_menu == 'Jenis Arsip')
-                echo "class=active"; ?>><a
-                  href="<?= base_url('admin/jenis_arsip'); ?>">Jenis Arsip</a></li>
-
-
-            </ul>
-          </li>
           <li <?php if ($menu == 'Pegawai')
-            echo "class=active"; ?>><a href="<?= base_url('admin/pegawai'); ?>"><i
-                class="fa fa-users"></i> <span>Pegawai</span></a></li>
-          <li <?php if ($menu == 'Arsip Kepegawaian')
-            echo "class=active"; ?>><a
-              href="<?= base_url('admin/arsip_kepegawaian'); ?>"><i class="fa fa-file"></i> <span>Arsip
-                Kepegawaian</span></a></li>
+            echo "class=active"; ?>><a href="<?= base_url('pegawai/profil'); ?>"><i
+                class="fa fa-user"></i> <span>
+                Data Pribadi</span></a></li>
+         
+          
 
 
         </ul>
