@@ -271,7 +271,7 @@ class Admin extends CI_Controller
         $this->db->set('id_keluarga', 'UUID()', FALSE);
         $this->form_validation->set_rules('nama_keluarga', 'nama_keluarga', 'required');
         if ($this->form_validation->run() === FALSE)
-            redirect('admin/keluarga');
+            redirect('admin/pegawai');
         else {
 
             $this->m_umum->set_data("keluarga");
@@ -285,7 +285,7 @@ class Admin extends CI_Controller
         $id = $this->input->post('id_pegawai');
         $this->form_validation->set_rules('id_keluarga', 'id_keluarga', 'required');
         if ($this->form_validation->run() === FALSE)
-            redirect('admin/keluarga');
+        redirect('admin/pegawai');
         else {
             $this->m_umum->update_data("keluarga");
             $notif = " Update keluarga Berhasil";
@@ -307,7 +307,7 @@ class Admin extends CI_Controller
         $this->db->set('id_pendidikan', 'UUID()', FALSE);
         $this->form_validation->set_rules('nama_sekolah', 'nama_sekolah', 'required');
         if ($this->form_validation->run() === FALSE)
-            redirect('admin/pendidikan');
+        redirect('admin/pegawai');
         else {
 
             $this->m_umum->set_data("pendidikan");
@@ -321,7 +321,7 @@ class Admin extends CI_Controller
         $id = $this->input->post('id_pegawai');
         $this->form_validation->set_rules('id_pendidikan', 'id_pendidikan', 'required');
         if ($this->form_validation->run() === FALSE)
-            redirect('admin/pendidikan');
+        redirect('admin/pegawai');
         else {
             $this->m_umum->update_data("pendidikan");
             $notif = " Update Pendidikan Berhasil";
