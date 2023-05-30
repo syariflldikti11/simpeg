@@ -1,6 +1,6 @@
 <?php
 
-class Admin extends CI_Controller
+class Pegawai extends CI_Controller
 {
 
     function __construct()
@@ -11,7 +11,7 @@ class Admin extends CI_Controller
         $this->load->model('m_admin');
         $role = $this->session->userdata('role');
         $masuk = $this->session->userdata('masuk');
-        if($masuk == TRUE && $role <>2){
+        if($masuk == TRUE && $role <>1){
             $url=base_url();
             redirect($url);
         }

@@ -8,7 +8,7 @@ class Login extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('M_login');
+        $this->load->model('m_login');
     }
     public function index()
     {
@@ -35,12 +35,12 @@ class Login extends CI_Controller
         if ($cek_login->num_rows() > 0) {
             $data = $cek_login->row();
             $this->session->set_userdata('masuk', TRUE);
-            if ($data->row == '1') {
-                $this->session->set_userdata('role', $cek_login->role);
+            if ($data->role == 1) {
+                $this->session->set_userdata('role', $data->role);
                 redirect('pegawai');
             }
-            if ($data->row == '2') {
-                $this->session->set_userdata('role', $cek_login->role);
+            if ($data->role == 2) {
+                $this->session->set_userdata('role', $data->role);
                 redirect('admin');
             } else {
                 $notif = "Gagal";

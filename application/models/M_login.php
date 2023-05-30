@@ -6,7 +6,7 @@ class M_login extends CI_Model{
 			$this->db->select('*');
 			$this->db->from('pengguna');
 			$this->db->join('pegawai ','pegawai.id_pegawai=pengguna.id_pegawai','left');
-			$this->db->where('username = "'.$username.'" AND password=md5 ("'.$password.'") ');
+			$this->db->where('nik = "'.$username.'" AND password=md5 ("'.$password.'") ');
 			$this->db->limit(1);
 			$query = $this->db->get();
 			return $query;

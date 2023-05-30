@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Dashboard
+    Dashboard 
     <small>Version 2.0</small>
   </h1>
   <ol class="breadcrumb">
@@ -32,7 +32,7 @@
         <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Likes</span>
+          <span class="info-box-text">Likes <?= $this->session->userdata('role'); ?> <?= $this->session->userdata('masuk'); ?></span>
           <span class="info-box-number">41,410</span>
         </div>
         <!-- /.info-box-content -->

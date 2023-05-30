@@ -43,9 +43,9 @@
       <!-- Logo -->
       <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+      
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg"><b>SIMPEG</b></span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->
@@ -360,18 +360,7 @@
               <li><a href="<?= base_url('admin/laporan_petugas'); ?>">Petugas</a></li>
               <li><a href="<?= base_url('admin/laporan_kampung_kb'); ?>">Kampung KB</a></li>
 
-              <li><a data-toggle="modal" data-target="#lapalkonmasuk" href="#">Alkon Masuk</a></li>
-              <li><a href="<?= base_url('admin/laporan_alkon'); ?>">Alkon</a></li>
-              <li><a href="<?= base_url('admin/laporan_alkon_kosong'); ?>">Alkon Stok Kosong</a></li>
-              <li><a href="<?= base_url('admin/laporan_alkon_kadaluarsa'); ?>">Alkon Kadaluarsa</a></li>
-              <li><a href="<?= base_url('admin/laporan_stok_alkon'); ?>">Stok Alkon</a></li>
-
-
-              <li><a href="<?= base_url('admin/laporan_calon_akseptor'); ?>">Calon Akseptor</a></li>
-              <li><a href="<?= base_url('admin/laporan_akseptor'); ?>">Akseptor</a></li>
-
-
-              <li><a data-toggle="modal" data-target="#lappermohonan" href="#">Permohonan</a></li>
+             
 
             </ul>
           </li>
